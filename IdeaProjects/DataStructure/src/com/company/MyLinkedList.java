@@ -19,7 +19,7 @@ package com.company;
         }
 
         //链表的遍历
-        public void visit(){
+       public void visit(){
             for (Node x = first.next; x!= null; x = x.next){
                 System.out.println(x.item);
             }
