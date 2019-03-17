@@ -1,9 +1,17 @@
 package com.company;
 
-    //实现一个带头结点的单链表
+import java.util.concurrent.CountDownLatch;
+
+//实现一个带头结点的单链表
     public class MyLinkedList<T>{
-        private int length;
+        private static  int CAPICITY;
+        private int count;
         private Node first = new Node();
+
+        public MyLinkedList(int n) {
+            this.CAPICITY = n;
+        }
+        public MyLinkedList() { }
 
 
         private class Node<T>{
@@ -18,7 +26,11 @@ package com.company;
 
         }
 
-        //链表的遍历
+    public int getCount() {
+        return count;
+    }
+
+    //链表的遍历
        public void visit(){
             for (Node x = first.next; x!= null; x = x.next){
                 System.out.println(x.item);
@@ -33,11 +45,13 @@ package com.company;
             Node temp = new Node(t);
             temp.next = first.next;
             first.next = temp;
+            ++count;
         }
         //在链表的头部删除结点
         public void delete(){
             if(first.next != null){
                 first.next = first.next.next;
+                --count;
             }
             else{
                 System.out.println("List is empty");
@@ -55,6 +69,9 @@ package com.company;
                     temp = temp.next;
                 }
                 temp.next = new Node(t);
+                ++count;
+
+
 
             }
 
@@ -71,9 +88,9 @@ package com.company;
                     temp2 = temp;
                     temp = temp.next;
 
+
                 }
                 temp2.next = null;
-
             }
 
         }
@@ -108,6 +125,22 @@ package com.company;
             }
             return true;
 
+        }
+        //删除某结点
+        public boolean  delete(T t){
+            Node temp = first.next;
+            Node temp2 = null;
+            if(t.equals(temp.item)){   //为第一个结点
+                first.next = temp.next;
+                --count;
+            }
+            while (temp != null && !t.equals(temp.item)){
+                temp2 = temp;
+                temp = temp.next;
+                --count;
+            }
+            temp2.next = temp.next;
+            return true;
         }
         //链表反转
         public MyLinkedList<T> reverseLinkedList(){
