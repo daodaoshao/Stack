@@ -58,7 +58,7 @@ public class Main {
        list2.addAtTail(89);
        list2.addAtTail(250);
        list2.visit();
-       list2.delete(250);
+       list2.delete(56);
        list2.visit();
         System.out.println(list2.getCount());
 

@@ -91,6 +91,7 @@ import java.util.concurrent.CountDownLatch;
 
                 }
                 temp2.next = null;
+                --count;
             }
 
         }
@@ -127,20 +128,23 @@ import java.util.concurrent.CountDownLatch;
 
         }
         //删除某结点
-        public boolean  delete(T t){
+        public boolean  delete(T t) {
             Node temp = first.next;
             Node temp2 = null;
-            if(t.equals(temp.item)){   //为第一个结点
+            if (t.equals(temp.item)) {   //为第一个结点
                 first.next = temp.next;
-                --count;
+            } else {
+                while (temp != null && !t.equals(temp.item)) {
+                    temp2 = temp;
+                    temp = temp.next;
+
+                }
+                temp2.next = temp.next;
             }
-            while (temp != null && !t.equals(temp.item)){
-                temp2 = temp;
-                temp = temp.next;
-                --count;
-            }
-            temp2.next = temp.next;
+            --count;
+
             return true;
+
         }
         //链表反转
         public MyLinkedList<T> reverseLinkedList(){
