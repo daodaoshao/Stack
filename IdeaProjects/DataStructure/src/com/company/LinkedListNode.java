@@ -14,7 +14,7 @@ public class LinkedListNode<T> {
         this.data = data;
     }
 
-    public void setNext(LinkedListNode next) {
+    public void setNext(LinkedListNode<T> next) {
         this.next = next;
     }
     public LinkedListNode(T t){
