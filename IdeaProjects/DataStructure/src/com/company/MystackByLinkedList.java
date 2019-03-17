@@ -4,16 +4,16 @@ public class MystackByLinkedList<T> {
     private LinkedListNode<T> head = new LinkedListNode<T>(null);
 
     public boolean push(T t){
-        head.setNext(new LinkedListNode<T>(t));
-        head = head.getNext();
+       // head.setNext(new LinkedListNode<T>(t));
+        LinkedListNode<T> temp = new LinkedListNode<T>(t);
+        temp.setNext(head);
+        head = temp;
         return true;
     }
     public T pop(){
-        while (head.getNext() != null){
-            head = head.getNext();
-        }
+
         T temp = head.getData();
-        head.setNext(null);
+        head = head.getNext();
         return temp;
 
     }

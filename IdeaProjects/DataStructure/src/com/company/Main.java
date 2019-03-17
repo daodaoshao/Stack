@@ -50,6 +50,8 @@ public class Main {
         stack.push(89.45);
         temp = stack.pop();
         System.out.println(temp);
+        temp = stack.pop();
+        System.out.println(temp);
 
     }
 }
