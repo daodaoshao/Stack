@@ -26,15 +26,20 @@ import java.util.concurrent.CountDownLatch;
 
         }
 
+
+
     public int getCount() {
         return count;
     }
 
     //链表的遍历
        public void visit(){
+            T temp;
             for (Node x = first.next; x!= null; x = x.next){
-                System.out.println(x.item);
+                System.out.print(x.item);
+                System.out.print(" ");
             }
+           System.out.println();
         }
         //链表是否为空
         public boolean isEmpty(){
@@ -130,20 +135,32 @@ import java.util.concurrent.CountDownLatch;
         //删除某结点
         public boolean  delete(T t) {
             Node temp = first.next;
-            Node temp2 = null;
+            Node temp2 = temp;
+            if (temp == null){
+                return false;
+            }
             if (t.equals(temp.item)) {   //为第一个结点
                 first.next = temp.next;
-            } else {
-                while (temp != null && !t.equals(temp.item)) {
+                return true;
+            }
+
+            while (temp != null && !t.equals(temp.item)) {
                     temp2 = temp;
                     temp = temp.next;
 
                 }
-                temp2.next = temp.next;
-            }
-            --count;
+                if (temp == null) {
+                    return false;
 
+                }
+                if (t.equals(temp.item)){
+                    temp2.next = temp.next;
+                    --count;
+                    return true;
+                }
             return true;
+
+
 
         }
         //链表反转
@@ -166,6 +183,21 @@ import java.util.concurrent.CountDownLatch;
             }
             return flag;
         }
+        //实现LRU算法
+    public boolean LRU(T t){
+            if (delete(t)) {
+                add(t);
+            }
+            else {
+                if (count >= CAPICITY) {
+                    deleteAtTail();
+                }
+                add(t);
+            }
+
+            return true;
+
+    }
 
 
     }
